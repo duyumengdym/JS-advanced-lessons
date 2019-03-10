@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	// ES ECMAScript简写  语言标准
+	// ES5,ES6是ECMAScript最主流的两个版本
+	if(true){
+		var a=1;//没有块级作用域 提升到全局
+	}
+	a=2;
+	if(false){
+		var a=1;//先声明 代码块是false 不执行 没有赋值 输出undefined
+	}
+	console.log(a);
+
+	for(var i=0;i<3;i++){
+		// i是全局变量 只有一个 循环i结束是几就是几		
+	}
+	console.log(i);
+
+	'use strict'//对当前页面的所有JavaScript都使用严格模式
+	function fn1(){
+		'use strict'
+		//在函数内部代码应用严格模式
+	}
+
+
+	// 如果变量不适用var声明 会自动提升为全局变量
+	// 可能会被覆盖
+	// 严格模式下，变量必须进行声明
+	function fn2(){
+		'use strict' 
+		username="zhangsan";
+	}
+	fn2();
+	console.log(username);
+
+	function fn3(){
+	     // 普通函数内部this指向window对象
+	     // 非严格模式下，普通函数的颞部this指向window
+	     // 严格模式下this会变成undefined 可以用其判断当前代码是否是严格模式 （函数内部写this===undefined？true:false）
+		console.log(this);
+	}
+
+
+    // 严格模式下禁止删除不可改变的属性和未定义的变量
+	var str="abcdef";
+	str.length=1; //对象已被释放
+	/*var strObject=new String(str);
+    strObject.length=1;*/
+	console.log(str.length);//6
+
+	// 严格模式下禁止函数参数重名
+	
+	// switch case 是进行值和类型的判断 不会发生隐式的类型转换
+	// 具有语句穿透性 执行 直到遇到break
+	var index=1;
+	switch(index){
+		case 1:
+			console.log("星期一");
+			break;
+		case 2:
+			console.log("星期二");
+			break;
+		default:
+			console.log("fefault");
+	}
+
+	var obj1={"username":"zhangsan","age":20};
+	obj1.__proto__.sex="女";
+	for (var i in obj1){
+		console.log(i,obj1[i]);
+	}
+	// 遍历数组忽略空缺
+	var arr=[1,,"22"];
+	for(var i in arr){
+		console.log(i,arr[i]);
+	}
+
+</script>
+</html>
