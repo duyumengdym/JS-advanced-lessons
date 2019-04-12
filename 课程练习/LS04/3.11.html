@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+// 反写
+	var a=45;
+	if(54==a){
+		console.log("判等");
+	}
+	// == ===
+	var a1=20;
+	var a2="20";
+	if (a1==a2) {//隐式类型转换
+	}
+	//===先判断类型再判断值  空对象地址在内存中肯定是不相同的
+	if(a1===a2){
+
+	}
+	// 算是运算符与类型转化
+	true+true=2;
+	1+{};={object Object};
+	// 一元运算符
+	// ++x,先进行运算，在输出
+	// x++,先输出，再运算
+	var x = "1";console.log(++x); //2 注意++和--的隐式类型转换
+	var x = "1";console.log(x+=1);//11
+	/*当逻辑运算符&&和||两侧的操作数不是布尔类型
+	-首先将左操作数转换成布尔类型
+	- 对转换后的左操作数进行逻辑判断（true or false）
+	- 根据短路原则返回原始左操作数或原始右操作数
+*/ 
+    20&&0 //0   左转布尔 左真 直接返回有操作数
+    null&10//null   左转布尔 左假 直接返回左操作数  对象转换成布尔类型就是真
+
+
+    var score = 76;
+
+	if(score>90){
+    	console.log("优");
+	}else if(score>75){
+   		console.log("良");
+	}else if(score>60){
+  		console.log("及格");
+	}else{
+	    console.log("不及格");
+    }
+    //通过&&和||的组合实现如上功能，注：小括号优先级最高
+    console.log((score>90&&"优")||(score>75&&"良")||(score>60&&"及格")||"不及格");
+    // 用switch case方式 做的是全等的判断 保证switch 和case 值和类型都必须相等 
+    switch(true){
+    	case score>90:
+    		console.log("优");
+    		break;
+    	case score>80;
+
+    }
+
+    //定义参数的形参和调用函数的实参个数可以不一致
+    //使用&&和||作函数的默认值  ES5
+    function sum(x,y,z){
+    	x=x||1;
+    	y=y||2;
+    	z=z||3; //特殊实参就是0
+    	return x+y+z;
+    }
+    sum();
+    //ES6中设置函数默认值
+    function add(x,y=2,z=3){
+    	return x+y+z;
+    }
+    add(1);
+    // 函数
+    function sum(x,y){//function +函数名 变量的定义会被解释器进行提升
+    	return x+y;
+    } 
+    sum(1,2);
+    // 匿名函数
+    window.onload=function(){
+    	alert("页面加载完成");
+    }
+    var sum1=function(x,y){
+    	return x+y;
+    }
+    sum1(1,2);
+    //使用Funciton 构造函数来实例化得到一个function
+    //Funciton实例化的函数，执行效率相对低，但是更加灵活。
+    var max=new Function("a","b","return a>b?a:b;");
+    max(2,3);
+
+    
+</script>
+</html>

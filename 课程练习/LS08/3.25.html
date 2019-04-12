@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="div1" style="width: 100px;height: 50px;"></div>
+</body>
+<script type="text/javascript">
+	var div1=document.getElementById("div1");
+	var username="zhangsan";
+	div1.onclick=function(){
+		this.innerHTML=username;
+	}
+	(function(w,d){
+		w.onload=function(){
+
+		}
+	})(window,document)
+	// 立即执行的函数表达式 IIFE
+	// (function 函数名（参数）{
+	// 		函数体
+	// }(实参))
+	(function max(x,y){
+		return x>y?x:y;
+	}(2,3));
+	(function min(a,b){
+		return a>b?b:a;
+	}(2,3));
+	(function(){
+		if(true){
+			var userId=20;
+		}
+	})()
+	function foo(){
+		var arr1=[];
+		for(var i=0;i<10;i++){
+			arr1[i]=function(){
+				return i;
+			}//循环结束后才会return i 刚开始存储的都是function
+		}
+		return arr1;
+	}
+	var arr2=foo();
+	arr2[0]();
+
+		function foo(){
+		var arr1=[];
+		for(var i=0;i<10;i++){
+			arr1[i]=(function(){
+				return i;
+			})()
+		}
+		return arr1;
+	}
+	var arr2=foo();
+	console.log(arr2);
+
+	function foo(){
+		var arr1=[];
+		for(var i=0;i<10;i++){
+			(function(j){
+			arr1[j]=(function(){
+				return j;
+			})(i)
+		}
+		return arr1;
+	}
+	var arr2=foo();
+	console.log(arr2);
+</script>
+</html>

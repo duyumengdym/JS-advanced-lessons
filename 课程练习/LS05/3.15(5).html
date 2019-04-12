@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	// 函数调用
+	//1.直接用函数名调用
+	//2.对象名.方法名 函数也能看成一个对象
+	var obj={
+		x:0,
+		// test内部的this指向调用该方法的对象
+		test:function(){
+			console.log(this.x);
+		}
+	}
+	obj.test();
+	//3.通过call( )和apply( )间接调用 
+	var objA={"objName":"AAA"};
+	var objB={"objName":"BBB"};
+	objA.foo=function(){
+		console.log(this.objName);
+	}
+	objA.foo();
+	//方法名.call（对象）可以切换方法调用的对象
+	//apply()现阶段相同 后面传参可能不同
+	objA.foo.call(objB);
+	//4.通过构造函数调用
+	function Person(username){
+		this.username=username;
+	}
+	Person.prototype.sayHi=function(){
+		console.log(this.username);
+	}
+	var person=new Person("zhangsan");
+	// 所有使用这个对象实例化出来的构造方法都指向proto
+	console.log(person.__proto__===Person.prototype);
+	
+	/*函数参数的数量问题*/
+	function test(){
+		var s="";
+		for (var i = 0; i < arguments.length; i++)
+		{
+			s+=arguments[i];
+			}
+			return s;
+		}
+		test("hello","world","!")
+	/*传参*/
+    // 实参为基本数据类型时，形参改变不影响实参（值传递）
+    var a=2;
+    function foo(x){
+    	x=1;
+    	console.log(a,x);
+    }
+    foo(a);
+    console.log(a)
+    // 引用数据类型 指向同一个地址空间
+    var obj={x:0};
+    function brr(obj1){
+    	obj1.x=2;
+    	console.log(obj,obj1);
+    }
+    brr(obj);
+
+    //定义一个函数完成对变量的复制过程，生成新的变量并返回。如果是引用类型时,可以是数组对象
+    var obj={"username":"zhangsan","age":20};
+    function copyArg(arg1){
+    	var copy;
+    	switch(true){
+    		case (arg1 instanceof String):
+    			copy=arg1;
+    			break;
+    		case (arg1 instanceof Number):
+    			copy=arg1;
+    			break;
+    		case (arg1 instanceof Boolean):
+    			copy=arg1;
+    			break;
+    		case (arg1 instanceof Array):
+    		    copy=[];
+    		    for(var i=0;i<arg1.length;i++){
+    		    	copy[i]=arg[i];
+    		    }
+    			break;
+    	}
+    copy(obj);
+    //typeof无法更细致的区分引用类型
+    var str="abc";
+    var arr1=['a','b','c'];
+    var date1=new Date();
+    console.log(typeof arr1);
+    console.log(typeof date1);
+    //对象 instanceof 构造函数
+    //1.看这个对象能否用该构造函数实例化得到，能得到结果为true
+    var arr2=[];
+    var arr2=new Array();
+    arr2 instanceof Array;
+
+    function Person(username){
+    	this.username=username;
+    }
+    var person=new Person("zhangsan");
+    person instanceof Person;
+    person instanceof Object;
+</script>
+</html>

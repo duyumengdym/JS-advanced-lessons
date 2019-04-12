@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- 将变量和函数声明在当前作用域（全局、函数）内进行提升 -->
+<script type="text/javascript">
+	// 该种情况时，仅会对变量进行提升 定义的提升！
+    console.log(foo);
+	var foo=function(){
+		console.log("hello");
+	}
+	// 当funciton前有运算符的话，被认定为表达式，不提升
+	// 同时有变量和函数 函数提升到变量上面
+AA();
+function AA(){
+    console.log("AA_1");
+}
+var AA = function AA(){
+    console.log("AA_2");
+};
+AA();
+
+//上边代码等价如下
+function AA(){
+    console.log("AA_1");
+}
+var AA;
+AA();
+AA = function AA(){
+    console.log("AA_2");
+};
+AA();
+
+
+	var a=1;//全局变量，所有位置均可访问到
+	function fn1(){
+		console.log(a);
+		var b=2;
+		var c=3;
+		function fn2(){
+			var c=30;
+			var d=4;
+			console.log(c);
+		}
+		fn2();
+		console.log(c);
+		console.log(d);
+	}
+	fn2();//报错
+	fn1();//1 30 3 报错
+// 函数和变量在完成定义之后，作用域就是确定的 和调用形式没有关系
+	var username="jack";
+	function foo(){
+		username="bill";
+		console.log(username);
+	}
+	function bar(){
+		var username="mike";
+		foo();
+		console.log(username);
+	}
+	bar();
+	//ES5没有块级作用域
+	//只有函数的局部作用域
+	if(true){
+		let b=5;
+	}
+	console.log(b);
+
+	var userId=5;
+	document.onclick=function(){
+		console.log(userId);
+		userId=10;
+	};
+	// 防止函数的立即执行
+	(function(){
+		if(true){ 
+		var userId=30;  
+	    }
+	})()
+	// 上下文，当某行代码执行过程中，它的上下文环境
+	// 当前作用域包含的变量，函数调用栈、this指向
+	var x=5;
+	var y=6;
+	function foo(){
+		var a=1;
+		var b=2;
+		function bar(){
+			var c=3;
+			var d=4;
+		}
+		bar();
+	}
+	foo();
+</script>
+</body>
+</html>

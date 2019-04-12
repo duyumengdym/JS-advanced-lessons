@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	/*function foo(x){
+		var tmp=10;
+		return function(y){
+			console.log(x+y,++tmp);
+		}
+	}
+	var fee=foo(10);
+	fee(10);
+	fee(10);*/
+
+    //非闭包
+	/*function foo(x){
+		var tmp=10;
+		return function(y){
+			console.log(y,++tmp);
+		}
+	}
+	var fee=foo(10);
+	fee(10);
+	fee(10);*/
+
+
+	/*function foo(x){
+		var temp=3;
+		return function(y){
+			x.count=x.count?x.count+1:1;
+			console.log(x+y+tmp,x.count);
+		}
+	}
+	var age=new Number(2);
+	var bar=foo(age);
+	bar(10);
+	bar(10);
+	bar(10);*/
+
+	function counter() {
+    var n = 0;
+    return {
+        count:function () {return ++n;},
+        reset:function () {n = 0;return n;}
+    }
+	}
+    var c = counter();
+    var d = counter();
+	console.log(c.count());
+	console.log(d.count());
+	console.log(c.reset());
+	console.log(c.count());
+	console.log(d.count());
+
+	 /*对象 instanceof构造函数
+	1.判断对象能否使用该构造函数实例化得到
+	2.判断对象的原型链上能否找到该构造函数的原型
+
+	对象.__proto__.__proto__==构造函数.prototype
+	*/
+	console.log(Object instanceof Function);//true  var o=new Object();
+	console.log(Object.__proto__==Function.prototype);
+	console.log(Object instanceof Object);//true
+	console.log(Object.__proto__.__proto__==Object.prototype);
+	console.log(Boolean instanceof Function);
+	console.log(Boolean instanceof Object);
+	console.log(String instanceof Function);
+	console.log(String instanceof Object);
+	console.log(Number instanceof Function);
+	console.log(Number instanceof Object);
+	console.log(Function instanceof Function);
+	console.log(Function instanceof Object);
+	console.log(Array instanceof Function);
+	console.log(Array instanceof Object);
+	console.log(Date instanceof Function);
+	console.log(Date instanceof Object);
+	console.log(Math instanceof Function);
+	console.log(Math instanceof Object);
+	console.log(JSON instanceof Function);
+	console.log(JSON instanceof Object);
+	//Math和JSON不是以构造函数存在的 对象
+	function Person(username,age){
+		this.username=username;
+		this.age=age;
+	}
+	var p=new Person("zhangsan",20);
+	console.log(p instanceof Person);
+	console.log(p.__proto__==Person.prototype);
+
+	var o={
+		_x:1,
+		get x(){
+			return this._x;
+		},
+		set x(val){
+			this._x=val;
+		}
+	}
+	o.x=10;
+	console.log(o.x);
+</script>
+</html>

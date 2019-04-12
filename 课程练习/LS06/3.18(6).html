@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	//对象 instanceof 构造函数
+	// 1.判断这个对象能否使用后面的构造函数实例化得到
+	// 2.判断能够在能否在对象的原型链上找到构造函数的prototype
+	function Person(username,age){
+		this.username=username;
+		this.age=age;
+	}
+	var person=new Person("zhangsan",20);
+	person instanceof Person  //判断对象是否可以是后面构造函数实例化得到的
+
+	console.log(person);//所有对象都__proto__属性 对象元切片
+	console.log(person.__proto__==Person.prototype);
+	// 判断能否在person的原型链上找到Object构造函数的prototype
+	console.log(person instanceof Person)
+	console.log(person.__proto__.__proto__);
+	console.log(Object.__proto__);
+
+	console.log(Array instanceof Function);
+	console.log(Array instanceof Object); //Array是函数 也是对象 就可以通过构造函数实例化得到的
+
+	console.log(Math instanceof Function);// false Math 不是函数 直接用就行
+	console.log(Math instanceof Object);//true
+
+	// 函数对象的属性
+	// lengthlength、arguments（隐藏的局部变量)
+	function fn1(x){
+		//arguments获取函数调用时传入的实参，类数组结构
+		for(var i=0;i<arguments.length;i++){
+			console.log(arguments[i]);
+		}
+		//函数名.length表示的是形参的个数
+		console.log(fn1.length);	
+	}
+	fn1(10,5,3);
+
+	function fn2(){
+		console.log(fn2.caller);//caller定义在函数上
+	}
+	function  fn3(){
+		fn2();
+	}
+	fn3();
+	// function fn3(){
+	// 	fn2();
+	// } 指向调用它的函数
+	
+	// callee（arguments的属性，常用于递归调用）
+	var func = function(n){
+    if (n <= 0)
+        return 1;
+    else
+        return n * func(n - 1);
+        //return n * arguments.callee(n - 1);
+	};
+	console.log(func(4));
+	var objA={"objName":"AAA"};
+	var objB={"objName":"BBB"};
+	objA.foo=function(){
+		console.log(this.objName);
+	}
+	objA.foo();
+	// 方法.call(对象) 函数对象方法之 call 调用一个普通函数或对象的方法时，用另一个对象替换当前对象
+	objA.foo.call(objB);
+	// 直接调用Person构造函数 原本的this指向 Person实例化得到的对象
+	function Person(username){
+		this.username=username;
+		// this.age=age;
+		this.sayHi=function(){
+			console.log(this.username);
+		}
+	}
+	// Person.call(this,username)
+	// 其具有一个指定的this值和分别地提供的参数（参数的列表） 相当于把Person函数的方法继承下来
+	function Student(username,age,sex){
+		Person.call(this,username); // 改变函数原本this指向 username的赋值在Person里面
+		// Person.call(this,username,age); 某一个函数call+对象 切换了当时this指向
+		// 方法.call() 方法会被调用一次
+		// Person.apply(this,[username,age]); //与call不同的是后面参数是数组
+		this.age=age;
+		// this.sex=sex;
+	}
+	var person=new Person("zhangsan");
+	var student=new Student("lisi",20);
+	console.log(student);
+	// console.log(person);
+	var objA={
+		"objName":"AAA",
+		"foo":function(){
+			console.log(this.objName);
+		}
+	}
+	var objB={"objName":"BBB"};
+	var foo2=objA.foo.bind(objB);
+	foo2();
+
+	var  obj={x:3};
+	function fn1(){
+		function fn2(){
+			console.log(this.x)
+		}
+		return fn2;
+	}
+	obj.fn3=fn1;
+	obj.fn4=fn1();//fn1()的执行结果
+	console.log(obj.fn3());//fn2();
+	console.log(obj.fn4());//3
+	}
+
+
+	var obj1={
+		x:1,
+		fn1:function(){
+			var that=this;
+			function fn2(){
+				console.log(that.x);  //函数多层嵌套 this 无法穿透
+			}
+			console.log(this.x);
+			fn2();
+		}
+	}
+	obj1.fn1();
+</script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	/*function fn(){
+		var arr1=[];
+		for(var i=0;i<10;i++){
+			arr1[i]=function(){
+				return i;
+			}
+		}
+
+		// 等价于
+		var i=0;
+
+		arr1[0]=function(){
+			return i;
+		}
+		arr1[1]=function(){
+			return i;
+		}
+
+	}
+	for(var i=0;i<10;i++){
+		(function(j){
+			arr1[j]=function(){
+				return j;
+			}
+		})(i)
+		// 第一次
+		(function(j){
+			arr1[j]=function(){
+				return j;
+			}
+		})(0)
+		//第二次
+		(function(j){
+			arr1[j]=function(){
+				return j;
+			}
+		})(1)
+		// 几个循环就生成几个作用域 j只在自己的作用域里起作用
+    }*/
+    // 延迟执行
+    for(var i=0;i<3;i++){
+    	(function(j){
+    	setTimeout(function(){
+    		console.log(new Date(),j);
+    	},j*1000);
+    	})(i)
+    }
+    // 闭包：通过返回函数（fn1）内部定义的函数（fn2）来访问fn1内部的局部变量
+    function fn1(){
+    	var x=1;
+    	function fn2(){
+    		return ++x;
+    	}
+    	return fn2;
+    }
+    var fn3=fn1();
+    console.log(fn3());
+    console.log(fn3());
+//闭包函数内部定义的函数（return匿名函数）
+//与其相关作用域中的变量（start）形成的实体
+//start会一直保存在内存中，不会被释放
+    function addNum(start){
+    	return function(step){
+    		start+=step;
+    		return start;                      
+    	}
+    }
+    var fn3=addNum(10);
+    console.log(fn3(1));
+    console.log(fn3(1));
+    console.log(fn3(1));
+/* 闭包带来的影响
+	1.闭包让我们可以访问到函数内部定义的变量
+	2.闭包让关联作用域中的特定变量保持在内存中，不释放
+	3.
+
+ */
+
+
+    function foo(){
+    	var i=0;
+    	function bar(){
+    		console.log(++i);//意味着i不会被释放掉
+    	}
+    	return bar;
+    }
+    var fn1=foo();
+    var fn2=foo();
+    fn1();
+    fn1();
+    fn2();//fn1和fn2 foo()的执行生成了两个闭包  互不影响
+    fn1();
+</script>
+</html>
