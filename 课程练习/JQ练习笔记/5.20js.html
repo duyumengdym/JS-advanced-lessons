@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.imgborder{
+			border:5px solid red;
+		}
+		div{
+			width: 200px;
+			height: 200px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<img src="1.jpg" id="img1"/>
+	<button id="btn">改变属性</button>
+	<button id="btn1">改变class</button>
+	<div></div>
+	<button id="slidedown">slideDown</button>
+	<button id="slideup">slideUp</button>
+	<button id="fadein">fadein</button>
+	<button id="fadeout">fadeout</button>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  
+<script type="text/javascript">
+
+	// $("insertafter").click(function(){
+	// 	var $img2=$("<img src='2.jpg'/>");
+	// 	$("#img1").after($img2);
+	// })
+	// $("after").click(function(){
+
+	// })
+	$("#btn").click(function(){
+		$("#img1").attr("src","2.jpg");
+		$("#img1").attr("title","这是一张图片");
+		alert($("#img1").attr("title"));
+		// 移除特定属性
+		$("#img1").removeAttr("title");
+	})
+	$("#btn1").click(function(){
+		$("#img1").addClass("imgborder");
+		$("#img1").removeClass("imgborder");
+	})
+	$("#img1").mouseover(function(){
+		$(this).addClass("imgborder");
+	})
+	$("#img1").mouseout(function(){
+		$(this).removeClass("imgborder");
+	})
+	/*
+		1.$()
+		  $(":eq()") $("td:even")
+		  $("td:odd") $("td:gt(index)")
+		  $("td:lt(index)")
+		  $(":text")
+		2.mouseover() mouseout()
+		  blur() focus() click()
+		3.append() appendTo()
+		  after() insertAfter()
+		  before() insertBefore()
+		  prepend() perpendTo()
+		 4.val() html()
+		 css() attr() addClass() removeClass()
+	 */
+	/*
+		改变元素的高度来切换显示和隐藏
+	 */
+	$("#slideup").click(function(){
+		$("div").slideUp(4000);
+	})
+	$("#slidedown").click(function(){
+		$("div").slideDown(4000);
+	})
+	/* 
+		fadeIn() fadeOut()改变元素的透明度来切换显示和隐藏
+	*/
+	$("#fadein").click(function(){
+		$("div").fadeIn(4000);
+	})
+	$("#fadeout").click(function(){
+		$("div").fadeOut(4000);
+	})
+	$("#animate").click(function(){
+		$("div").animate({
+			"margin-left":"500px";
+		},3000)
+	})
+</script>
+</html>

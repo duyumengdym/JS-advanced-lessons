@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	div{
+		height: 200px;
+		width: 200px;
+		background-color: red;
+	}
+</style>
+<body>
+	<div>
+	</div>
+	<button id="btn">點擊點擊</button>
+</body>
+<script type="text/javascript " src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	/*
+		$("").slideUp(1000);
+		$("").slideDown(1000);
+		$("").fadeIn(1000);
+		$("").fadeOut(1000);
+	 */
+	$("#btn").click(function(){
+		// $("div").animate({
+		// 	"margin-left":"400px",
+		// 	"margin-top":"200px"
+		// },3000);
+		/*动画的顺序执行	*/	
+		$("div").animate({"margin-left":"400px"},2000).animate({
+			"margin-top":"200px"
+		},2000).animate({"margin-top":"0px"},2000).animate({
+			"margin-left":"0px"
+		},2000);
+	})
+</script>
+</html>

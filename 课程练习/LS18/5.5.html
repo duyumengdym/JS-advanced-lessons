@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*---------------------------------------------------------------------*/
+	/*
+		forEach(callback,thiArg);
+		callback(element,index,arr);回调函数
+			element遍历数组每次渠道的数组元素值
+			index遍历数组每次取到的数组元素的索引
+			arr操作的数组
+		thisArg可以指明回调函数内部this的指向
+	 */
+	var arr1=["a","b","c","d"];
+	arr1.forEach(function(element,index,arr2)
+	{
+		window.x=10;
+		console.log(element,index,arr2);
+	},window)//值 索引值  当前操作数组
+/*---------------------------------------------------------------------*/
+	// Array.prototype.every(callback,thisValue?) 
+	function isBigEnough(element, index, array) {
+	  return (element >= 10);
+	}
+	var passed = [12, 5, 8, 130, 44].every(isBigEnough);
+	// false
+	passed = [12, 54, 18, 130, 44].every(isBigEnough);
+	//true
+	
+	var arr3=[10,20,30,40];
+	var result=arr3.every(function(value) {
+	  return (value >= 20);
+	});
+	console.log(result);
+
+
+	var arr4=[10,20,30,40];
+	var arr5=arr4.map(function(element) {
+	  return element*2;
+	});
+	console.log(arr5);
+</script>
+</html>

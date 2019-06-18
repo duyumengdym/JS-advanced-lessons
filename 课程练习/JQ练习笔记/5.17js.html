@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{background-color:#888888; margin-top: 10px;}
+	</style>
+</head>
+<body>
+	<input type="text" name="">
+	<input type="file" name="">
+	<input type="button" name="" value="绑定点击事件" id="btn1"/>
+	<input type="submit" name="">
+	<input type="checkbox" name="">
+	<img src="http://b.hiphotos.baidu.com/image/pic/item/908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg">
+	<div>层1</div>
+	<div>层2</div>
+	<div>层3</div>
+	<table>
+		<tr>
+			<td>用户名：</td>
+			<td>
+				<input type="text" name=""/>
+			</td>
+		</tr>
+		<tr>
+			<td>密码</td>
+			<td>
+				<input type="password" name=""/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" name=""/> </td>
+		</tr>
+	</table>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+	$(":text").css("background","red");
+	/*
+		jquery包装集.事件方法（回调函数）
+	 */
+	$("#btn1").click(function(){
+		alert("按钮被点击了");
+	})
+	$(":button").click(function(){
+		alert("按钮被点击了1");
+	})
+	$("img").mouseover(function(){
+		$(this).css("border","1px solid red");
+	})
+	$("div").mouseover(function(){
+		$(this).css("background","blue");
+	})
+	$("div").mouseout(function(){
+		$(this).css("background","#888888");
+	})
+	$("div").click(function(){
+		$(this).css("background","red");
+	})
+
+</script>
+</html>

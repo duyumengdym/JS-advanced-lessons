@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	
+<body>
+    <table id="tb1" width="400" height="400" border="1" align="center">;
+		<tr class="even">
+			<td id="td1"></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr class="odd">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr class="even">
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr class="odd">
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+	/*
+		$("") jQuery包装集
+		选择器：id选择器、类选择器、标签选择器、层级选择
+
+		后代选择器、子选择器
+	 */
+	// $("#tb1.even").css("background","red");
+	// $("#tb1 td").css("background","red");
+	// $("td:first").css("background","red");
+	// $("td:last").css("background","green");
+	// $("td:even").css("background","red");
+	// $("td:odd").css("background","red");
+	/*
+		eq(index) 选中特定索引值的元素
+		gt(index) 选中索引值大于index的元素
+		It(index) 选中索引值小于index的元素
+		not()
+	 */
+	// $("td:eq(0)").css("background","black");
+	// $("td:gt(1)").css("background","white");
+	// $("td:gt(3)").css("background","pink");
+	   $("td:not(#td1)").css("background","pink");
+</script>
+</html>

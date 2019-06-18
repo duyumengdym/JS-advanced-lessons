@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	这是一个网页
+	<button id="btn">jq ajax</button>
+</body>
+
+<script type="text/javascript " src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	/*
+		不会阻塞主线程的执行，在满足特定条件时会反馈到主线程
+	 */
+	
+	window.onload=function(){
+		console.log("页面加载完成");
+	}
+	console.log("主线程");
+	var i=0;
+	var intervalId=setInterval(function(){
+		console.log(i++);
+	},3000);
+
+	/*
+		ajax可以以异步的方式实现前后端数据的交互
+	 */
+	//前端通过发起ajax请求的方式
+	//来从服务器端获取数据
+	//请求方式有get请求和post请求
+	/*
+	
+		在前端页面实现JQuery ajax请求
+		ajax请求指明请求的后端程序的地址
+		后端程序接收到请求，做出响应
+		前端接受后端程序的响应内容，并在前端使用
+		前后端文件必须都放在服务器上
+	 */
+	$.get("./serever.php",function(res){
+		console.log(res);
+		$("body").html(res);
+	})
+	$("btn").click(function(){
+		$.ajax({
+			url:".server.php",
+			type:"get",
+			success:function(data){
+				console.log(data);
+			},
+			error:function(err){
+				console.log(err);
+			}
+		})
+	})
+</script>
+</html>
+<?php
+	echo"请求成功"
+	>

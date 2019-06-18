@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	div{
+		height: 200px;
+		width: 200px;
+		background-color: red;
+	}
+</style>
+<body>
+	<div id="div1"></div>
+	<a href="http://www.edu2act.cn/task/list/" id="baidu">链接</a>
+</body>
+<script type="text/javascript">
+	var div1=document.getElementById("div1");
+	div1.addEventListener("click",function(e){
+		console.log(e);
+	})
+	baidu.addEventListener("click",function(e){
+		/*阻止元素的默认操作*/
+		/*e.timeStamp 获取时间不准确*/
+		e.preventDefault();
+		var num=e.timeStamp;
+	})
+</script>
+</html>

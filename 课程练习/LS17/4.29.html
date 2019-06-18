@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	function BaseClass(){
+
+	}
+	BaseClass.fn1=function(){
+		console.log("静态方法");
+	}
+	BaseClass.fn1();
+
+	BaseClass.prototype.fn2=function(){
+		console.log("原型方法");
+	}
+	var base=new BaseClass();
+	base.fn2();
+/*---------------------------------------------------------------*/
+	function Person(userName,age){
+		this.userName=userName;
+		this.age=age;
+	}
+	Person.prototype.constructor=Person;
+	var person=new Person("zhangsan",20);
+	person.constructor==Person;
+	var obj=new Object();
+	obj.constructor=Object;
+/*---------------------------------------------------------------*/
+(function(w,d){
+	/*构造函数*/
+	function inputIdentify(inputId){
+		this.init();
+	}
+	inputIdentify.prototype.init=function(inputId){
+		var inputObject=d.getElementById(inputId);
+		this.inputObject=inputObject;
+	}
+	inputIdentify.prototype.effect=function(){
+		this.inputObject.onblur=function(){
+			alert("失去焦点");
+		}
+		this.inputObject.onfocus=function(){
+			alert("获得焦点");
+		}
+	}
+	w.inputIdentify=inputIdentify;
+})(window,document)
+var input1=new inputIdentify();
+/*----------------------------------------------------------------*/
+// 数组
+	var arr1=["a","b","c","d"];
+	var arr2=arr1;
+	arr1[0]='e';
+	console.log(arr2);
+/*
+	1.判断方法是静态方法还是原型方法
+	2、确定这个方法是用来做什么的
+	(1)是否会对原变量产生影响
+	(2)最终的作用效果是什么样的
+    3、判断方法的参数分别是什么
+    (1)如果参数是回调函数的形式，判断回调函数的参数是什么
+    (2)如果是值类型参数，判断参数所代表的意义
+    4、确定方法调用的返回值
+ */
+	var arr1=[4,2,3,1];
+	function compareNumbers(a,b){
+		return a-b;
+	}
+	arr1.sort(compareNumbers);
+	console.log(arr1);
+</script>
+</html>

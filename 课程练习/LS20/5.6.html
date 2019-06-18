@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	/* 
+		/正则表达式的文本部分/ 正则表达式的标识符
+		[XYZ]指的匹配中括号中任意的字符
+		标识符：
+		g是否全局的检索,获取所有的匹配项还是只获取第一个
+		i表示是否忽略大小写
+
+	*/
+	// 三种定义方式
+	var reg1=/[bcf]at/;
+	var reg2=new RegExp(/[bcf]at/,"gi");
+	var reg3=new RegExp("/[bcf]at/","gi");
+	var str1="fat Fat bat cat jdkfdj llo aat";
+	console.log(str1.match(reg1));
+	/*------------------------------------------------*/
+	var reg1 = /adf/i;
+	var str = "abcdef def f";
+	console.log(str.match(reg1));
+	/*-----------------------------------------------*/
+	var str = "abcdef adf kil ade adff";
+	var reg2=/adf*/gi;
+	console.log(str.match(reg2));
+	/*-----------------------------------------------*/
+	/*  . 表示任意字符 */
+	var str = "abcdef adf kil ade adff";
+	var reg3=/a.c/gi;
+	console.log(str.match(reg3));
+	/*-----------------------------------------------*/
+	/*
+		字符类别
+		\d:匹配任意阿拉伯数字。等价于[0-9]。
+		\D:匹配任意一个不是阿拉伯数字的字符。等价于[^0-9]。
+	 */
+	var str4 = "a2c a3c abc";
+	var reg4=/a\dc/gi;
+	var reg4_1=/a\Dc/gi;
+	console.log(str4.match(reg4));
+	console.log(str4.match(reg4_1));
+	/*
+	
+		[xyz]从中括号的字符集合当中任取一个字符
+		[^xyz]排除中括号字符集合中的字符
+		^匹配开始的位置
+		$匹配结束的位置
+	 */
+	var str="atf btf ktf";
+	var reg=/^[abc]tf/gi;
+	str.match(reg);
+
+	var reg1=/^a[0-9]/gi;
+	var str1="a1b2c3";
+	str1.match(reg1);
+
+	var reg2=/[0-9]z$/gi;
+	var str2="abcd9z";
+	var str2_1="abcd9"
+	console.log(str2.match(reg2));
+	console.log(str2_1.match(reg2));
+
+	/*
+		数量词：
+		?表示之前的字符出现过0次或1次
+		+表示之前的字符出现过一次或者多次
+
+	 */
+	var reg1=/abc?/gi;
+	var str1="abc ab kkk";
+	str1.repalce(reg1,"x");
+
+	
+</script>
+</html>

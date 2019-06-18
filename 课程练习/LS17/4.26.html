@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	var superObj = {
+    	x:1,
+    	y:2
+	};
+	var subObj_First = Object.create(superObj);
+	var subObj_Second = Object.create(superObj);
+	console.log(subObj_First);
+	console.log(subObj_Second);
+	subObj_First.__proto__.x = 5;//若此行写为subObj_First.x = 5;结果又是如何？
+	console.log(subObj_Second.x);
+
+
+	var obj={
+		x:1,
+		y:2
+	}
+	var obj1=Object.create(obj);
+	var obj2=Object.create(obj);
+	// obj.__proto__.x    改动和下面的不一样
+	obj1.x=3;
+	console.log(obj2.x);
+
+
+
+
+	/*----------------------------------------------------------------------------------------*/
+	/*构造函数实现的函数继承*/
+	function Person(name){
+    	this.name = name;
+	}
+	Person.prototype.age = 22;
+	Person.prototype.showName = function(){console.log(this.name);};
+	function Student(id){
+   		this.id = id;
+   	}
+   	/*
+   		person name属性Mike,person.__proto__.age
+   		person.__proto__.showName
+   	 */
+	Student.prototype = new Person("Mike");
+	var s1 = new Student(2017001);
+	var s2 = new Student(2017002);
+    console.log(s1);
+    /*
+    	S1自身上面没有age,s1.__proto__=Student.prototype
+		Student.prototype = new Person("Mike");
+		Student.prototype=Person;
+		person对象上没有age属性;
+		s1.__proto__.__proto__==Person.__proto__
+		Person._proto__==Person.prototype
+    */
+    console.log(Student.prototype.__proto__==Person.prototype);
+	console.log(s1.name,s1.age,s1.id);
+	console.log(s2.name,s2.age,s2.id);//name是一样的 存在变量共享
+
+
+	/*-----------------------------------------------------------------------------------*/
+
+	function Person(name,age){
+	    this.name = name;
+	    this.age = age;
+	};
+	Person.prototype.showName = function(){console.log(this.name);};
+	function Student(name,age,id){
+	    Person.call(this,name,age); //this是s1
+	    // Person.call 切换了Person函数内部this的指向 
+	    // this.Person(name,age);相当于调用了Person
+	    this.id = id;
+	}
+	Student.prototype.__proto__ = Person.prototype;
+	var s1 = new Student("xxx",22,2017001);
+	var s2 = new Student("www",23,2017002);
+	console.log(s1);
+	/*---------------------------------------------------------*/
+	function Person(name,age){
+	    this.name = name;
+	    this.age = age;
+	};
+	Person.prototype.showName = function(){
+	    console.log(this.name);
+	};
+	function Student(name,age,id){
+	    Person.call(this,name,age);
+	    this.id = id;
+	}console.log(Student.prototype);
+	var p1=Object.create(Person.prototype);
+
+	Student.prototype=p1;
+	// Student.prototype = Object.create(Person.prototype);
+	Student.prototype.constructor = Student;
+	console.log(Student.prototype);
+	var s1 = new Student("xxx",22,2017001);
+	var s2 = new Student("www",23,2017002);
+</script>
+</html>

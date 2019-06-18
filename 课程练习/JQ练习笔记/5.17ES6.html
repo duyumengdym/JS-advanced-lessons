@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>f</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+	//let声明的变量会拥有块级作用域{}
+	/*
+		之前VAR声明变量的方式，只有一个
+		全局变量i.所有的延迟执行都在共用一个i
+
+		let声明的方式，每次循环都会形成自己的一个独立作用域、
+	 */
+	//const生命的变量不可修改，const定义变量时必须进行初始化
+	let username="zhangsan";
+	if(true){
+		let username="lisi";
+	}
+	for(let i=0;i<3;i++){
+		setTimeout(function(){
+			console.log(new Date(),i);
+		},1000)
+	}
+	/*let const 声明的变量，在声明前是不可用的*/
+	console.log(username);
+</script>
+</html>

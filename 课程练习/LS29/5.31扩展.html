@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    let str="abcdef";
+     for(let i of str){
+        console.log(i);
+    }
+    str.repeat();
+
+    let reg1=/xyz/gi;
+    let reg2=new RegExp("xyz",'gi');
+    let reg3=new RegExp(/xyz/gi);
+    let reg4=new RegExp(/xyz/gi,'i');
+    console.log(reg1.flags);
+
+    let str="aaa_aa_a";
+    let reg5=/a+/g;
+    let reg6=/a+/y;
+    console.log(reg5.exec(str));
+    // sticky y修饰符 他会从上一次匹配成功的结束位置开始匹配
+    console.log(reg6.exec(str));
+    reg6.lastIndex;//上一次匹配成功的索引位置
+</script>
+</html>

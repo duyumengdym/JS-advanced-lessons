@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#container{
+			width: 1000px;
+			height: 400px;
+			margin:0 auto;
+			border: 1px solid red;
+		}
+		#btnlist{
+			width: 150px;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>用户名：</td>
+			<td>
+				<input type="text" name="" id="username" />
+				<span class="error"></span>
+			</td>
+		</tr>
+		<tr>
+			<td>密码</td>
+			<td>
+				<input type="password" name=""/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" name="" value="登录" /> </td>
+		</tr>
+	</table>
+	<!-- <div id="container">
+		<img src="http://f.hiphotos.baidu.com/image/h%3D300/sign=d985fb87d81b0ef473e89e5eedc551a1/b151f8198618367aa7f3cc7424738bd4b31ce525.jpg" id="img1">
+	</div >
+	<div id="btnlist">
+		<button id="after">after</button>
+	</div> -->
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script>
+	/*
+		val()用于设置或者获取表单元素的value值
+		html()用于设置或获取双标记标签元素的标签内部的html内容
+		css()用于设置选中元素的样式 css("样式名","样式值")
+		css({"样式名":"样式值"})
+	 */
+	/*
+	     1.向特定元素的后面插入新的节点 after() insertAfter()
+  2.向特定元素的前面插入新的节点 before() insertBefore()
+  3.向特定元素标签内部最后的位置添加新的节点 append() appendTo()
+  4.向特定元素标签内部最前的位置添加新的节点 prepend() prependTo()
+		$(选择器).val();
+		$("html标记")
+		$(选择器).append();向选中元素内部添加一个新的元素
+		$(选择器).remove();将特定元素从页面结构中移除
+	 */
+	// $("#username").blur(function(){
+	// 	var inputVal=$(this).val();
+	// 	var errorTip=$("<span>用户名不能为空</span>");
+	// 	if(inputVal==""){
+	// 		$(this).parent().append(errorTip);
+	// 	}
+	//     else{
+	//     	$(this).parent().remove(errorTip);
+	//     }
+	// })
+	$("#username").blur(function(){
+		var inputVal=$(this).val();
+		if(inputVal==""){
+			$(".error").html("用户名不能为空");
+			$(".error").css({
+				"color":"red",
+				"font-size":"30px"
+			});
+		}
+	})
+</script>
+</html>
